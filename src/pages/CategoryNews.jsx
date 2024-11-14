@@ -6,7 +6,7 @@ const CategoryNews = () => {
     const {data:news} = useLoaderData()
     
     return (
-        <div>
+        <div className='space-y-10'>
            {
             news.map(Singlenews => <CategoryCard SingleNews={Singlenews}  key={Singlenews._id}></CategoryCard>)
            }

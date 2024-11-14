@@ -1,15 +1,17 @@
 import React from 'react';
-import { FaRegClock, FaShareAlt } from 'react-icons/fa'; // Example of React Icons usage
-import { Link } from 'react-router-dom';
-import CategoryNews from './../pages/CategoryNews';
-import { AiFillStar } from 'react-icons/ai';
+import { FaShareAlt } from 'react-icons/fa';
+import Rating from '@mui/material/Rating';
+import { MdRemoveRedEye } from 'react-icons/md';
+
+
+
+
 
 const CategoryCard = ({ SingleNews: data = {} }) => {
-    console.log(data);
     return (
         <div className=' w-full p-4 bg-white rounded-lg shadow-md'>
             {/* author information */}
-            <div className='flex items-center mb-4'>
+            <div className='flex items-center mb-4 bg-slate-100 p-2'>
                 <img
                     src={data.author.img}
                     alt={data.author.img}
@@ -30,19 +32,25 @@ const CategoryCard = ({ SingleNews: data = {} }) => {
             <img
                 src={data.thumbnail_url}
                 alt={data.thumbnail_url}
-                className='w-full h-48 object-cover rounded-lg mb-4'
+                className='w-full h-64 object-center  rounded-lg mb-4'
             />
             {/* details */}
             <p className='text-gray-700 text-sm mb-4'>
-                {data.details.slice(0, 150)}...{" "}
+                {data.details.slice(0, 350)}...{" "}
                 <span className='text-primary'>Read More</span>
 
             </p>
+            <hr className='pt-4 mt-4' />
             {/* rating and views */}
             <div className='flex items-center justify-between'>
                 {/* ratting */}
-                <div>
-                <AiFillStar></AiFillStar>
+                <div className='flex items-center gap-1'>
+                    <Rating name="read-only" defaultValue={data.rating.number} precision={0.5} readOnly />
+                    <span className='text-xl'>{data.rating.number}</span>
+                </div>
+                <div className='flex items-center gap-2'>
+                    <MdRemoveRedEye size={23} />
+                    <span>{data.total_view}</span>
                 </div>
             </div>
         </div>
